@@ -1,0 +1,1564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Renewable Energy: The Path to a Sustainable Future – LPU CHE 110</title>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+  :root {
+    --green: #2ecc71;
+    --green-dark: #1a9e50;
+    --green-light: #a8f0c6;
+    --blue: #3498db;
+    --blue-dark: #1a6fa8;
+    --blue-light: #aed6f1;
+    --white: #ffffff;
+    --off-white: #f7fbf9;
+    --dark: #0d1f1a;
+    --dark2: #152b24;
+    --gray: #6b7c78;
+    --gray-light: #e8f5ef;
+    --accent: #f39c12;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--off-white);
+    color: var(--dark);
+    overflow-x: hidden;
+  }
+
+  /* ─── NAVBAR ─── */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 1000;
+    background: rgba(13,31,26,0.96);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(46,204,113,0.18);
+    padding: 0 2rem;
+    height: 64px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+
+  .nav-logo {
+    display: flex; align-items: center; gap: 10px;
+  }
+
+  .nav-logo img {
+    height: 36px;  background: white;
+  padding: 4px;
+  border-radius: 6px;
+  }
+
+  .nav-logo-text {
+    font-family: 'Sora', sans-serif;
+    font-size: 0.75rem; font-weight: 600;
+    color: var(--green); letter-spacing: 0.04em;
+    line-height: 1.2;
+  }
+
+  .nav-links {
+    display: flex; align-items: center; gap: 0.1rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: rgba(255,255,255,0.72);
+    text-decoration: none;
+    font-size: 0.78rem; font-weight: 500;
+    padding: 0.35rem 0.65rem;
+    border-radius: 6px;
+    transition: all 0.2s;
+    letter-spacing: 0.02em;
+  }
+
+  .nav-links a:hover {
+    color: var(--green);
+    background: rgba(46,204,113,0.1);
+  }
+
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+  .hamburger span { width: 24px; height: 2px; background: var(--white); border-radius: 2px; transition: all 0.3s; }
+
+  /* ─── HERO ─── */
+  #home {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #0d1f1a 0%, #0a2d20 40%, #0c3a2a 70%, #0d2f1e 100%);
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    text-align: center;
+    padding: 80px 2rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-bg-pattern {
+    position: absolute; inset: 0;
+    background-image:
+      radial-gradient(circle at 20% 30%, rgba(46,204,113,0.08) 0%, transparent 50%),
+      radial-gradient(circle at 80% 70%, rgba(52,152,219,0.08) 0%, transparent 50%),
+      radial-gradient(circle at 50% 50%, rgba(46,204,113,0.04) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-grid {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(46,204,113,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(46,204,113,0.04) 1px, transparent 1px);
+    background-size: 50px 50px;
+    pointer-events: none;
+  }
+
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(46,204,113,0.12);
+    border: 1px solid rgba(46,204,113,0.3);
+    color: var(--green);
+    padding: 0.4rem 1rem;
+    border-radius: 100px;
+    font-size: 0.78rem; font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    position: relative; z-index: 1;
+    animation: fadeDown 0.8s ease both;
+  }
+
+  .hero-badge::before {
+    content: ''; width: 6px; height: 6px;
+    background: var(--green); border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(1.4)} }
+
+  h1.hero-title {
+    font-family: 'Sora', sans-serif;
+    font-size: clamp(2.4rem, 6vw, 5rem);
+    font-weight: 800;
+    line-height: 1.08;
+    color: var(--white);
+    margin-bottom: 1.2rem;
+    position: relative; z-index: 1;
+    animation: fadeUp 0.9s ease 0.2s both;
+  }
+
+  h1.hero-title span {
+    background: linear-gradient(90deg, var(--green), var(--blue));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-sub {
+    font-size: 1.1rem; font-weight: 300;
+    color: rgba(255,255,255,0.62);
+    max-width: 540px;
+    line-height: 1.7;
+    margin-bottom: 2.5rem;
+    position: relative; z-index: 1;
+    animation: fadeUp 0.9s ease 0.4s both;
+  }
+
+  .hero-btns {
+    display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;
+    position: relative; z-index: 1;
+    animation: fadeUp 0.9s ease 0.6s both;
+  }
+
+  .btn-primary {
+    background: linear-gradient(135deg, var(--green), var(--green-dark));
+    color: var(--white);
+    padding: 0.85rem 2rem;
+    border: none; border-radius: 100px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem; font-weight: 600;
+    cursor: pointer; text-decoration: none;
+    display: inline-flex; align-items: center; gap: 8px;
+    box-shadow: 0 4px 24px rgba(46,204,113,0.35);
+    transition: all 0.25s;
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px rgba(46,204,113,0.5);
+  }
+
+  .btn-outline {
+    background: transparent;
+    color: var(--white);
+    padding: 0.85rem 2rem;
+    border: 1px solid rgba(255,255,255,0.25);
+    border-radius: 100px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem; font-weight: 500;
+    cursor: pointer; text-decoration: none;
+    display: inline-flex; align-items: center; gap: 8px;
+    transition: all 0.25s;
+  }
+
+  .btn-outline:hover {
+    border-color: var(--green);
+    color: var(--green);
+    transform: translateY(-2px);
+  }
+
+  .hero-stats {
+    display: flex; gap: 3rem; flex-wrap: wrap; justify-content: center;
+    margin-top: 4rem;
+    position: relative; z-index: 1;
+    animation: fadeUp 0.9s ease 0.8s both;
+  }
+
+  .hero-stat { text-align: center; }
+  .hero-stat-num {
+    font-family: 'Sora', sans-serif;
+    font-size: 2rem; font-weight: 800;
+    color: var(--green);
+    display: block;
+  }
+  .hero-stat-label {
+    font-size: 0.78rem; color: rgba(255,255,255,0.5);
+    letter-spacing: 0.04em; text-transform: uppercase;
+  }
+
+  .hero-scroll {
+    position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 6px;
+    color: rgba(255,255,255,0.35); font-size: 0.72rem;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    z-index: 1; animation: fadeIn 1.5s ease 1.2s both;
+  }
+
+  .scroll-line {
+    width: 1px; height: 40px;
+    background: linear-gradient(to bottom, rgba(255,255,255,0.35), transparent);
+    animation: scrollPulse 1.5s ease-in-out infinite;
+  }
+
+  @keyframes scrollPulse { 0%,100%{height:40px;opacity:0.35} 50%{height:60px;opacity:0.6} }
+
+  /* ─── SECTIONS ─── */
+  section {
+    padding: 5rem 2rem;
+    max-width: 1180px;
+    margin: 0 auto;
+  }
+
+  .section-wrap { width: 100%; }
+
+  .section-label {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 0.74rem; font-weight: 700;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--green);
+    margin-bottom: 0.75rem;
+  }
+  .section-label::before {
+    content: ''; width: 20px; height: 2px;
+    background: var(--green); border-radius: 2px;
+  }
+
+  .section-title {
+    font-family: 'Sora', sans-serif;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 800; line-height: 1.2;
+    color: var(--dark);
+    margin-bottom: 0.75rem;
+  }
+
+  .section-desc {
+    font-size: 1rem; color: var(--gray);
+    max-width: 580px; line-height: 1.7;
+    margin-bottom: 3rem;
+  }
+
+  /* Divider sections */
+  .section-full {
+    background: var(--dark);
+    padding: 5rem 2rem;
+    width: 100%;
+  }
+  .section-full .inner { max-width: 1180px; margin: 0 auto; }
+  .section-full .section-title { color: var(--white); }
+  .section-full .section-desc { color: rgba(255,255,255,0.55); }
+
+  .section-alt { background: #f0f9f4; }
+  .section-alt2 { background: #e8f5ef; }
+
+  /* ─── INTRO CARDS ─── */
+  .intro-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .intro-card {
+    background: var(--white);
+    border: 1px solid #e2f0e9;
+    border-radius: 16px;
+    padding: 1.8rem;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.05);
+    transition: all 0.3s;
+    cursor: pointer;
+  }
+
+  .intro-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 40px rgba(46,204,113,0.15);
+    border-color: var(--green);
+  }
+
+  .intro-icon {
+    width: 48px; height: 48px;
+    background: linear-gradient(135deg, var(--green), var(--blue));
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+  }
+
+  .intro-card h3 {
+    font-family: 'Sora', sans-serif;
+    font-size: 1rem; font-weight: 700;
+    margin-bottom: 0.5rem; color: var(--dark);
+  }
+
+  .intro-card p {
+    font-size: 0.88rem; color: var(--gray);
+    line-height: 1.65;
+  }
+
+  /* ─── ENERGY TYPES ─── */
+  .energy-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.25rem;
+  }
+
+  .energy-card {
+    border-radius: 20px;
+    padding: 2rem 1.5rem;
+    cursor: pointer;
+    position: relative; overflow: hidden;
+    transition: all 0.3s;
+    border: 2px solid transparent;
+  }
+
+  .energy-card:hover { transform: translateY(-8px) scale(1.02); }
+
+  .energy-card.solar { background: linear-gradient(145deg, #fff8e1, #fef3cd); border-color: #f39c12; }
+  .energy-card.wind  { background: linear-gradient(145deg, #e3f2fd, #d0ebff); border-color: var(--blue); }
+  .energy-card.hydro { background: linear-gradient(145deg, #e8f5e9, #d4edda); border-color: var(--green); }
+  .energy-card.biomass { background: linear-gradient(145deg, #f3e5f5, #e8d5eb); border-color: #9b59b6; }
+  .energy-card.geo   { background: linear-gradient(145deg, #fbe9e7, #fad7d0); border-color: #e74c3c; }
+
+  .energy-emoji { font-size: 2.5rem; margin-bottom: 0.75rem; display: block; }
+
+  .energy-card h3 {
+    font-family: 'Sora', sans-serif;
+    font-size: 1rem; font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+
+  .energy-card p { font-size: 0.83rem; color: var(--gray); line-height: 1.6; }
+
+  .energy-detail {
+    max-height: 0; overflow: hidden;
+    transition: max-height 0.4s ease;
+    font-size: 0.82rem; color: #555; margin-top: 0.5rem;
+    line-height: 1.55;
+  }
+
+  .energy-card.active .energy-detail { max-height: 200px; }
+
+  .energy-card .expand-btn {
+    display: inline-flex; align-items: center;
+    gap: 4px; font-size: 0.78rem; font-weight: 600;
+    color: var(--blue); margin-top: 0.75rem;
+    cursor: pointer; background: none; border: none;
+    padding: 0; font-family: inherit;
+  }
+
+  /* ─── CHARTS ─── */
+  .charts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+
+  .chart-card {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 20px;
+    padding: 1.75rem;
+  }
+
+  .chart-card h3 {
+    font-family: 'Sora', sans-serif;
+    color: var(--white);
+    font-size: 1rem; font-weight: 700;
+    margin-bottom: 1.25rem;
+  }
+
+  /* ─── COUNTERS ─── */
+  .counters-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .counter-card {
+    text-align: center;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(46,204,113,0.2);
+    border-radius: 16px;
+    padding: 1.75rem 1rem;
+  }
+
+  .counter-num {
+    font-family: 'Sora', sans-serif;
+    font-size: 2.2rem; font-weight: 800;
+    color: var(--green);
+    display: block;
+  }
+
+  .counter-label {
+    font-size: 0.8rem; color: rgba(255,255,255,0.5);
+    margin-top: 0.3rem; letter-spacing: 0.04em;
+  }
+
+  /* ─── INDIA SECTION ─── */
+  .india-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem; align-items: start;
+  }
+
+  .india-map {
+    background: linear-gradient(135deg, #0d1f1a, #1a4332);
+    border-radius: 20px; padding: 2.5rem;
+    display: flex; flex-direction: column; align-items: center;
+    justify-content: center;
+    min-height: 280px;
+    position: relative; overflow: hidden;
+  }
+
+  .india-outline {
+    font-size: 8rem; line-height: 1;
+    filter: drop-shadow(0 0 20px rgba(46,204,113,0.4));
+  }
+
+  .india-label {
+    font-family: 'Sora', sans-serif;
+    color: var(--white); font-weight: 700;
+    font-size: 1.1rem; margin-top: 1rem;
+  }
+
+  .india-rank {
+    background: var(--green);
+    color: var(--white);
+    padding: 0.35rem 1rem;
+    border-radius: 100px;
+    font-size: 0.82rem; font-weight: 700;
+    margin-top: 0.75rem;
+  }
+
+  .india-cards { display: flex; flex-direction: column; gap: 1rem; }
+
+  .india-card {
+    background: var(--white);
+    border: 1px solid #e2f0e9;
+    border-left: 4px solid var(--green);
+    border-radius: 12px;
+    padding: 1.2rem 1.5rem;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+    transition: all 0.25s;
+  }
+
+  .india-card:hover { transform: translateX(6px); box-shadow: 0 4px 20px rgba(46,204,113,0.15); }
+
+  .india-card h4 {
+    font-family: 'Sora', sans-serif;
+    font-size: 0.92rem; font-weight: 700;
+    margin-bottom: 0.4rem; color: var(--dark);
+  }
+
+  .india-card p { font-size: 0.83rem; color: var(--gray); line-height: 1.6; }
+
+  /* ─── BENEFITS ─── */
+  .benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .benefit-card {
+    background: var(--white);
+    border-radius: 18px;
+    padding: 2rem;
+    border: 1px solid #e2f0e9;
+    position: relative; overflow: hidden;
+    transition: all 0.3s;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+  }
+
+  .benefit-card::before {
+    content: ''; position: absolute;
+    top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--green), var(--blue));
+  }
+
+  .benefit-card:hover { transform: translateY(-6px); box-shadow: 0 12px 36px rgba(0,0,0,0.1); }
+
+  .benefit-icon { font-size: 2rem; margin-bottom: 1rem; display: block; }
+
+  .benefit-card h3 {
+    font-family: 'Sora', sans-serif;
+    font-size: 1rem; font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+
+  .benefit-card p { font-size: 0.86rem; color: var(--gray); line-height: 1.65; }
+
+  /* ─── TOGGLE COMPARE ─── */
+  .toggle-wrap {
+    background: var(--white);
+    border: 1px solid #e2f0e9;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+  }
+
+  .toggle-tabs {
+    display: flex;
+    border-bottom: 1px solid #e2f0e9;
+  }
+
+  .toggle-tab {
+    flex: 1; padding: 1rem;
+    background: none; border: none;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem; font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    color: var(--gray);
+  }
+
+  .toggle-tab.active { color: var(--green); background: rgba(46,204,113,0.06); }
+
+  .toggle-content { display: none; padding: 2rem; }
+  .toggle-content.active { display: block; }
+
+  .compare-table { width: 100%; border-collapse: collapse; }
+  .compare-table th, .compare-table td {
+    padding: 0.75rem 1rem;
+    text-align: left;
+    font-size: 0.88rem;
+    border-bottom: 1px solid #f0f7f3;
+  }
+  .compare-table th {
+    font-family: 'Sora', sans-serif;
+    font-weight: 700; font-size: 0.8rem;
+    text-transform: uppercase; letter-spacing: 0.04em;
+    color: var(--gray);
+    background: #f7fbf9;
+  }
+  .compare-table .green { color: var(--green-dark); font-weight: 600; }
+  .compare-table .red { color: #e74c3c; font-weight: 600; }
+
+  /* ─── CHALLENGES ─── */
+  .timeline { position: relative; padding-left: 2rem; }
+
+  .timeline::before {
+    content: ''; position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--green), var(--blue));
+  }
+
+  .timeline-item {
+    position: relative;
+    padding: 0 0 2.5rem 2rem;
+  }
+
+  .timeline-item::before {
+    content: ''; position: absolute;
+    left: -0.45rem; top: 0.3rem;
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    background: var(--green);
+    border: 2px solid var(--white);
+    box-shadow: 0 0 0 3px rgba(46,204,113,0.25);
+  }
+
+  .timeline-year {
+    font-family: 'Sora', sans-serif;
+    font-size: 0.78rem; font-weight: 700;
+    color: var(--blue); letter-spacing: 0.06em;
+    text-transform: uppercase; margin-bottom: 0.4rem;
+  }
+
+  .timeline-item h3 {
+    font-family: 'Sora', sans-serif;
+    font-size: 1.05rem; font-weight: 700;
+    margin-bottom: 0.4rem;
+  }
+
+  .timeline-item p { font-size: 0.88rem; color: var(--gray); line-height: 1.65; }
+
+  /* ─── INNOVATIONS ─── */
+  .innovations-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1.25rem;
+  }
+
+  .innov-card {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 16px;
+    padding: 1.75rem 1.5rem;
+    transition: all 0.3s;
+    position: relative; overflow: hidden;
+  }
+
+  .innov-card:hover {
+    background: rgba(46,204,113,0.1);
+    border-color: rgba(46,204,113,0.4);
+    transform: translateY(-4px);
+  }
+
+  .innov-num {
+    font-family: 'Sora', sans-serif;
+    font-size: 0.72rem; font-weight: 800;
+    color: rgba(46,204,113,0.5);
+    letter-spacing: 0.12em;
+    margin-bottom: 0.75rem;
+    display: block;
+  }
+
+  .innov-card h3 {
+    font-family: 'Sora', sans-serif;
+    font-size: 0.95rem; font-weight: 700;
+    color: var(--white); margin-bottom: 0.5rem;
+  }
+
+  .innov-card p { font-size: 0.82rem; color: rgba(255,255,255,0.5); line-height: 1.6; }
+
+  /* ─── FUTURE TIMELINE ─── */
+  .future-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .future-card {
+    background: var(--white);
+    border-radius: 18px;
+    padding: 1.75rem;
+    border: 1px solid #e2f0e9;
+    border-top: 4px solid;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+    transition: all 0.3s;
+  }
+
+  .future-card:nth-child(1) { border-top-color: var(--green); }
+  .future-card:nth-child(2) { border-top-color: var(--blue); }
+  .future-card:nth-child(3) { border-top-color: var(--accent); }
+  .future-card:nth-child(4) { border-top-color: #9b59b6; }
+
+  .future-card:hover { transform: translateY(-6px); box-shadow: 0 12px 36px rgba(0,0,0,0.1); }
+
+  .future-period {
+    font-family: 'Sora', sans-serif;
+    font-size: 1.25rem; font-weight: 800;
+    margin-bottom: 0.5rem;
+  }
+
+  .future-card p { font-size: 0.86rem; color: var(--gray); line-height: 1.65; }
+
+  /* ─── CONCLUSION ─── */
+  .conclusion-wrap {
+    background: linear-gradient(135deg, #0d1f1a, #0c3a2a);
+    border-radius: 24px;
+    padding: 3.5rem;
+    position: relative; overflow: hidden;
+  }
+
+  .conclusion-wrap::before {
+    content: '';
+    position: absolute; top: -40px; right: -40px;
+    width: 300px; height: 300px;
+    background: radial-gradient(circle, rgba(46,204,113,0.15) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .conclusion-title {
+    font-family: 'Sora', sans-serif;
+    font-size: 2rem; font-weight: 800;
+    color: var(--white);
+    margin-bottom: 1rem;
+  }
+
+  .conclusion-pillars {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.25rem; margin: 2rem 0;
+  }
+
+  .pillar {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(46,204,113,0.2);
+    border-radius: 14px;
+    padding: 1.4rem;
+  }
+
+  .pillar h4 {
+    font-family: 'Sora', sans-serif;
+    font-size: 0.92rem; font-weight: 700;
+    color: var(--green); margin-bottom: 0.5rem;
+  }
+
+  .pillar p { font-size: 0.83rem; color: rgba(255,255,255,0.55); line-height: 1.6; }
+
+  .closing-quote {
+    font-family: 'Sora', sans-serif;
+    font-size: 1.3rem; font-weight: 700;
+    color: var(--white);
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    font-style: italic;
+  }
+
+  .closing-quote span { color: var(--green); }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--dark);
+    border-top: 1px solid rgba(46,204,113,0.15);
+    padding: 3rem 2rem;
+  }
+
+  .footer-inner {
+    max-width: 1180px; margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem; align-items: start;
+  }
+
+  .footer-logo-block { display: flex; flex-direction: column; gap: 1rem; }
+
+  .footer-logo {
+    display: flex; align-items: center; gap: 12px;
+  }
+
+  .footer-logo img {
+    height: 44px; background: white;
+  padding: 4px;
+  border-radius: 6px;
+  }
+
+  .footer-logo-text {
+    font-family: 'Sora', sans-serif;
+    color: var(--white); font-weight: 700;
+    font-size: 1rem; line-height: 1.3;
+  }
+
+  .footer-logo-sub { font-size: 0.75rem; color: var(--green); font-weight: 400; }
+
+  .footer-tagline {
+    font-size: 0.88rem; color: rgba(255,255,255,0.45);
+    line-height: 1.65; max-width: 300px;
+  }
+
+  .footer-project {
+    background: rgba(46,204,113,0.07);
+    border: 1px solid rgba(46,204,113,0.2);
+    border-radius: 16px;
+    padding: 1.75rem;
+  }
+
+  .footer-project-title {
+    font-family: 'Sora', sans-serif;
+    font-size: 0.72rem; font-weight: 700;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--green); margin-bottom: 0.5rem;
+  }
+
+  .footer-project h3 {
+    font-family: 'Sora', sans-serif;
+    font-size: 1rem; font-weight: 700;
+    color: var(--white); margin-bottom: 0.3rem;
+  }
+
+  .footer-project p {
+    font-size: 0.83rem; color: rgba(255,255,255,0.5);
+    line-height: 1.6;
+  }
+
+  .footer-team {
+    margin-top: 1rem;
+    display: flex; flex-direction: column; gap: 0.35rem;
+  }
+
+  .team-member {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 0.86rem; color: rgba(255,255,255,0.72);
+  }
+
+  .team-member::before {
+    content: ''; width: 6px; height: 6px;
+    background: var(--green); border-radius: 50%; flex-shrink: 0;
+  }
+
+  .footer-bottom {
+    max-width: 1180px; margin: 2rem auto 0;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 1rem;
+  }
+
+  .footer-bottom p {
+    font-size: 0.78rem; color: rgba(255,255,255,0.3);
+  }
+
+  .footer-bottom .green { color: var(--green); }
+
+  /* ─── ANIMATIONS ─── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+
+  .reveal {
+    opacity: 0; transform: translateY(30px);
+    transition: all 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .reveal.visible {
+    opacity: 1; transform: translateY(0);
+  }
+
+  .reveal-left {
+    opacity: 0; transform: translateX(-30px);
+    transition: all 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .reveal-left.visible {
+    opacity: 1; transform: translateX(0);
+  }
+
+  /* ─── MOBILE ─── */
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .nav-links.open {
+      display: flex; flex-direction: column;
+      position: fixed; top: 64px; left: 0; right: 0;
+      background: rgba(13,31,26,0.98);
+      padding: 1rem;
+      border-bottom: 1px solid rgba(46,204,113,0.15);
+      z-index: 999;
+    }
+    .hamburger { display: flex; }
+
+    .india-grid { grid-template-columns: 1fr; }
+    .footer-inner { grid-template-columns: 1fr; }
+    .hero-stats { gap: 2rem; }
+
+    .conclusion-wrap { padding: 2rem; }
+  }
+
+  /* Progress bar */
+  .progress-bar {
+    position: fixed; top: 64px; left: 0; height: 2px;
+    background: linear-gradient(90deg, var(--green), var(--blue));
+    z-index: 999; width: 0%; transition: width 0.1s;
+  }
+</style>
+</head>
+<body>
+
+<!-- PROGRESS BAR -->
+<div class="progress-bar" id="progressBar"></div>
+
+<!-- NAVBAR -->
+<nav id="navbar">
+  <div class="nav-logo">
+  <img src="https://vectorseek.com/wp-content/uploads/2023/08/lpu-sae-india-collegiate-club-Logo-Vector.svg-.png" alt="LPU Logo">
+
+  <div class="nav-logo-text">
+    LOVELY PROFESSIONAL<br/>UNIVERSITY
+  </div>
+</div>
+  </div>
+
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#introduction">Intro</a></li>
+    <li><a href="#types">Types</a></li>
+    <li><a href="#data">Data</a></li>
+    <li><a href="#india">India</a></li>
+    <li><a href="#benefits">Benefits</a></li>
+    <li><a href="#challenges">Challenges</a></li>
+    <li><a href="#innovations">Innovations</a></li>
+    <li><a href="#future">Future</a></li>
+    <li><a href="#conclusion">Conclusion</a></li>
+  </ul>
+
+  <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div id="home" style="padding-top:0">
+  <div class="hero-bg-pattern"></div>
+  <div class="hero-grid"></div>
+
+  <div class="hero-badge">CHE 110 Project · LPU · 2026</div>
+
+  <h1 class="hero-title">Renewable Energy:<br/><span>The Path to a<br/>Sustainable Future</span></h1>
+
+  <p class="hero-sub">Exploring clean energy systems — solar, wind, hydro, biomass & beyond — and how they shape tomorrow's world.</p>
+
+  <div class="hero-btns">
+    <a href="#introduction" class="btn-primary">🌱 Explore More</a>
+    <a href="#conclusion" class="btn-outline">📄 View Conclusion</a>
+  </div>
+
+  <div class="hero-stats">
+    <div class="hero-stat">
+      <span class="hero-stat-num" data-target="30" data-suffix="%">0%</span>
+      <span class="hero-stat-label">Global Electricity</span>
+    </div>
+    <div class="hero-stat">
+      <span class="hero-stat-num" data-target="170" data-suffix=" GW">0</span>
+      <span class="hero-stat-label">India's RE Capacity</span>
+    </div>
+    <div class="hero-stat">
+      <span class="hero-stat-num" data-target="12.7" data-suffix="M">0</span>
+      <span class="hero-stat-label">Jobs Created</span>
+    </div>
+    <div class="hero-stat">
+      <span class="hero-stat-num" data-target="195" data-suffix="">0</span>
+      <span class="hero-stat-label">Paris Agreement Nations</span>
+    </div>
+  </div>
+
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    Scroll
+  </div>
+</div>
+
+<!-- INTRODUCTION -->
+<section id="introduction">
+  <div class="section-label">Foundation & Global Context</div>
+  <h2 class="section-title">Introduction to Renewable Energy</h2>
+  <p class="section-desc">Energy sourced from naturally replenishing systems — solar, wind, hydro, biomass, and geothermal — driving the world's transition away from fossil fuels.</p>
+
+  <div class="intro-grid">
+    <div class="intro-card reveal">
+      <div class="intro-icon">☀️</div>
+      <h3>Shifting From Fossil Fuels</h3>
+      <p>Energy from naturally replenishing sources including solar, wind, hydro, biomass, and geothermal power systems now account for 30%+ of global electricity generation.</p>
+    </div>
+    <div class="intro-card reveal" style="transition-delay:0.1s">
+      <div class="intro-icon">🌍</div>
+      <h3>Energy Fuels Development</h3>
+      <p>Renewable energy is essential for economic growth, healthcare delivery, education advancement, and improved quality of life worldwide, especially in emerging nations.</p>
+    </div>
+    <div class="intro-card reveal" style="transition-delay:0.2s">
+      <div class="intro-icon">⏱️</div>
+      <h3>Why the Transition Matters Now</h3>
+      <p>Centuries of fossil fuel dependence created environmental crises. Climate change and resource depletion now demand an urgent, coordinated sustainable transition.</p>
+    </div>
+    <div class="intro-card reveal" style="transition-delay:0.3s">
+      <div class="intro-icon">🤝</div>
+      <h3>Global Unity for Change</h3>
+      <p>195 nations committed through the Paris Agreement to achieve net-zero emissions by 2050, with renewable energy at the heart of every national strategy.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TYPES OF RENEWABLE ENERGY -->
+<div class="section-alt" id="types">
+  <section style="padding-top:0;padding-bottom:0">
+    <div style="padding:5rem 0">
+      <div class="section-label">Section Overview</div>
+      <h2 class="section-title">Types of Renewable Energy</h2>
+      <p class="section-desc">Click on each card to learn more about each energy source — how it works, key stats, and its role in the sustainable future.</p>
+
+      <div class="energy-grid">
+        <div class="energy-card solar reveal" onclick="toggleCard(this)">
+          <span class="energy-emoji">☀️</span>
+          <h3>Solar Energy</h3>
+          <p>Harness sunlight through photovoltaic cells or thermal systems, scalable from homes to utility installations.</p>
+          <div class="energy-detail">Solar PV costs dropped 90% in the last decade. India's Bhadla Solar Park generates 2.4 billion kWh annually. Perovskite cells promise 30%+ efficiency next generation.</div>
+          <button class="expand-btn">Learn more ▾</button>
+        </div>
+        <div class="energy-card wind reveal" style="transition-delay:0.1s" onclick="toggleCard(this)">
+          <span class="energy-emoji">💨</span>
+          <h3>Wind Energy</h3>
+          <p>Convert kinetic energy from air masses via turbines across onshore and offshore locations efficiently.</p>
+          <div class="energy-detail">Wind costs declined 70% over the past decade. Offshore turbines now exceed 15 MW capacity. Wind powered 15% of US electricity in 2024 and is growing rapidly.</div>
+          <button class="expand-btn">Learn more ▾</button>
+        </div>
+        <div class="energy-card hydro reveal" style="transition-delay:0.2s" onclick="toggleCard(this)">
+          <span class="energy-emoji">💧</span>
+          <h3>Hydropower</h3>
+          <p>Utilize water flow and elevation differences to drive turbines — the most established large-scale renewable source.</p>
+          <div class="energy-detail">Provides ~16% of global electricity. Uses minimal land per kWh, is highly reliable, and provides grid stability. China's Three Gorges Dam alone generates 88.2 TWh annually.</div>
+          <button class="expand-btn">Learn more ▾</button>
+        </div>
+        <div class="energy-card biomass reveal" style="transition-delay:0.3s" onclick="toggleCard(this)">
+          <span class="energy-emoji">🌿</span>
+          <h3>Biomass</h3>
+          <p>Transform organic materials through combustion or anaerobic digestion, utilizing agricultural waste and forestry residues.</p>
+          <div class="energy-detail">Contributes 5% of global electricity. Biofuels support transportation decarbonization. India's biogas potential: 62 million cubic meters/day from agricultural waste alone.</div>
+          <button class="expand-btn">Learn more ▾</button>
+        </div>
+        <div class="energy-card geo reveal" style="transition-delay:0.4s" onclick="toggleCard(this)">
+          <span class="energy-emoji">🌋</span>
+          <h3>Geothermal</h3>
+          <p>Extract Earth's internal heat through wells, providing consistent baseload power independent of weather conditions.</p>
+          <div class="energy-detail">Iceland runs on 100% renewable energy, 70% geothermal. Available 24/7 with a 90%+ capacity factor. Next-gen enhanced geothermal could power the entire US grid.</div>
+          <button class="expand-btn">Learn more ▾</button>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- DATA / CHARTS -->
+<div class="section-full" id="data">
+  <div class="inner">
+    <div class="section-label" style="color:var(--green)">Global Energy Landscape</div>
+    <h2 class="section-title">Data & Statistics</h2>
+    <p class="section-desc">The numbers behind the renewable revolution — capacity growth, country leaders, and cost transformation.</p>
+
+    <div class="charts-grid">
+      <div class="chart-card reveal">
+        <h3>📈 Global Renewable Capacity (GW)</h3>
+        <canvas id="capacityChart" height="220"></canvas>
+      </div>
+      <div class="chart-card reveal" style="transition-delay:0.15s">
+        <h3>🌏 Top Countries by Capacity (GW)</h3>
+        <canvas id="countriesChart" height="220"></canvas>
+      </div>
+      <div class="chart-card reveal" style="transition-delay:0.3s">
+        <h3>📉 Cost Reduction (%)</h3>
+        <canvas id="costChart" height="220"></canvas>
+      </div>
+    </div>
+
+    <div class="counters-row">
+      <div class="counter-card reveal">
+        <span class="counter-num" data-target="30" data-suffix="%">0%</span>
+        <div class="counter-label">Global Electricity Share</div>
+      </div>
+      <div class="counter-card reveal" style="transition-delay:0.1s">
+        <span class="counter-num" data-target="90" data-suffix="%">0%</span>
+        <div class="counter-label">Solar Cost Drop (10yr)</div>
+      </div>
+      <div class="counter-card reveal" style="transition-delay:0.2s">
+        <span class="counter-num" data-target="300" data-suffix="B">$0</span>
+        <div class="counter-label">Annual Investment</div>
+      </div>
+      <div class="counter-card reveal" style="transition-delay:0.3s">
+        <span class="counter-num" data-target="1180" data-suffix=" GW">0</span>
+        <div class="counter-label">China's RE Capacity</div>
+      </div>
+      <div class="counter-card reveal" style="transition-delay:0.4s">
+        <span class="counter-num" data-target="12.7" data-suffix="M">0</span>
+        <div class="counter-label">Jobs Globally</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- INDIA SECTION -->
+<section id="india">
+  <div class="section-label">Regional Focus</div>
+  <h2 class="section-title">Renewable Energy in India</h2>
+  <p class="section-desc">India ranks 4th globally with 170+ GW operational capacity — and ambitious targets ahead.</p>
+
+  <div class="india-grid reveal">
+    <div class="india-map">
+      <div class="india-outline">🇮🇳</div>
+      <div class="india-label">India</div>
+      <div class="india-rank">4th Globally in RE</div>
+      <div style="color:rgba(255,255,255,0.5);font-size:0.8rem;margin-top:0.5rem;text-align:center">170+ GW now → 500+ GW by 2030</div>
+    </div>
+
+    <div class="india-cards">
+      <div class="india-card" style="border-left-color:var(--blue)">
+        <h4>🎯 Strategic Position & Current Capacity</h4>
+        <p>India ranks 4th globally in renewable energy with 170+ GW operational capacity, targeting 500+ GW by 2030 through solar and wind expansion. Solar alone targets 300 GW.</p>
+      </div>
+      <div class="india-card" style="border-left-color:var(--green)">
+        <h4>🏛️ Government Initiatives Driving Growth</h4>
+        <p>National Solar Mission exceeded its targets. International Solar Alliance unites 190+ countries. The PLI Scheme accelerates domestic manufacturing of renewable energy components.</p>
+      </div>
+      <div class="india-card" style="border-left-color:var(--accent)">
+        <h4>☀️ Bhadla Solar Park – Success Model</h4>
+        <p>World's largest solar installation generates 2.4 billion kWh annually, powers 340,000+ households, and created 5,000+ jobs — a transformational model for communities.</p>
+      </div>
+      <div class="india-card" style="border-left-color:#9b59b6">
+        <h4>🌾 Solar Village Initiative</h4>
+        <p>Off-grid solar systems electrify 500+ rural villages providing 24/7 electricity, boosting agricultural productivity and education access across Southeast Asia replicably.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BENEFITS -->
+<div class="section-alt2" id="benefits">
+  <section style="padding-top:0;padding-bottom:0">
+    <div style="padding:5rem 0">
+      <div class="section-label">Environmental & Economic</div>
+      <h2 class="section-title">Benefits of Renewable Energy</h2>
+      <p class="section-desc">From cleaner air to stronger economies, the renewable transition creates value at every level of society.</p>
+
+      <div class="benefits-grid">
+        <div class="benefit-card reveal">
+          <span class="benefit-icon">🌡️</span>
+          <h3>Climate Change Mitigation</h3>
+          <p>Renewables prevent 2+ billion metric tons of CO₂ emissions annually, effectively offsetting 900+ coal plants globally and slowing climate change trajectory.</p>
+        </div>
+        <div class="benefit-card reveal" style="transition-delay:0.1s">
+          <span class="benefit-icon">💨</span>
+          <h3>Air Quality Improvement</h3>
+          <p>Zero harmful emissions prevent 7+ million premature deaths yearly from air pollution worldwide, delivering immediate public health dividends.</p>
+        </div>
+        <div class="benefit-card reveal" style="transition-delay:0.2s">
+          <span class="benefit-icon">💧</span>
+          <h3>Water Conservation</h3>
+          <p>Solar and wind use minimal water, protecting aquatic ecosystems — thermal plants consume 40% of freshwater withdrawals, making this shift critical.</p>
+        </div>
+        <div class="benefit-card reveal" style="transition-delay:0.3s">
+          <span class="benefit-icon">🦋</span>
+          <h3>Ecosystem Protection</h3>
+          <p>Renewables eliminate habitat destruction from coal mining degradation and actively protect biodiversity hotspots critical to planetary health.</p>
+        </div>
+        <div class="benefit-card reveal" style="transition-delay:0.1s">
+          <span class="benefit-icon">💼</span>
+          <h3>Job Creation</h3>
+          <p>12.7M+ renewable jobs globally, surpassing fossil fuel employment. Solar leads with 4.4M jobs. India saved $5B+ annually through domestic solar deployment.</p>
+        </div>
+        <div class="benefit-card reveal" style="transition-delay:0.2s">
+          <span class="benefit-icon">📈</span>
+          <h3>Economic Growth</h3>
+          <p>Renewable sector contributes 2–3% to GDP in leading markets while attracting $100+ billion in foreign direct investment. Energy independence reduces oil import reliance.</p>
+        </div>
+      </div>
+
+      <!-- TOGGLE COMPARISON -->
+      <div style="margin-top:3rem">
+        <h3 style="font-family:'Sora',sans-serif;font-size:1.2rem;font-weight:700;margin-bottom:1rem" class="reveal">⚡ Renewable vs Fossil Fuels</h3>
+        <div class="toggle-wrap reveal">
+          <div class="toggle-tabs">
+            <button class="toggle-tab active" onclick="switchTab(this,'env')">🌱 Environmental</button>
+            <button class="toggle-tab" onclick="switchTab(this,'econ')">💰 Economic</button>
+            <button class="toggle-tab" onclick="switchTab(this,'social')">👥 Social</button>
+          </div>
+          <div id="env" class="toggle-content active">
+            <table class="compare-table">
+              <tr><th>Factor</th><th>Renewable Energy</th><th>Fossil Fuels</th></tr>
+              <tr><td>CO₂ Emissions</td><td class="green">Near zero</td><td class="red">Major contributor</td></tr>
+              <tr><td>Air Pollution</td><td class="green">None during operation</td><td class="red">Significant particulates</td></tr>
+              <tr><td>Water Use</td><td class="green">Minimal (solar/wind)</td><td class="red">Very high (thermal)</td></tr>
+              <tr><td>Land Disturbance</td><td class="green">Low / reversible</td><td class="red">Mining, drilling, spills</td></tr>
+            </table>
+          </div>
+          <div id="econ" class="toggle-content">
+            <table class="compare-table">
+              <tr><th>Factor</th><th>Renewable Energy</th><th>Fossil Fuels</th></tr>
+              <tr><td>Operating Cost</td><td class="green">Near zero fuel cost</td><td class="red">Ongoing fuel expenses</td></tr>
+              <tr><td>Price Volatility</td><td class="green">Stable long-term</td><td class="red">Geopolitically volatile</td></tr>
+              <tr><td>Job Creation</td><td class="green">12.7M+ growing jobs</td><td class="red">Declining sector</td></tr>
+              <tr><td>Subsidies Needed</td><td class="green">Rapidly decreasing</td><td class="red">$7 trillion/yr globally</td></tr>
+            </table>
+          </div>
+          <div id="social" class="toggle-content">
+            <table class="compare-table">
+              <tr><th>Factor</th><th>Renewable Energy</th><th>Fossil Fuels</th></tr>
+              <tr><td>Energy Access</td><td class="green">Democratizes energy</td><td class="red">Centralized distribution</td></tr>
+              <tr><td>Health Impact</td><td class="green">7M lives saved/yr</td><td class="red">Major health burden</td></tr>
+              <tr><td>Community Power</td><td class="green">Local microgrids</td><td class="red">Corporate dependency</td></tr>
+              <tr><td>Youth Opportunity</td><td class="green">New tech careers</td><td class="red">Shrinking industry</td></tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- CHALLENGES -->
+<section id="challenges">
+  <div class="section-label">Honest Assessment</div>
+  <h2 class="section-title">Challenges & Limitations</h2>
+  <p class="section-desc">Renewable energy faces real obstacles — but each challenge is being met with innovation and investment.</p>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start" class="reveal">
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-year">Challenge 01</div>
+        <h3>Infrastructure Investment</h3>
+        <p>High initial capital ($1–3M per MW) offset by 20–30 year operational life and rapidly falling component costs globally. ROI is increasingly favorable.</p>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">Challenge 02</div>
+        <h3>Intermittency Problem</h3>
+        <p>Solar and wind variability solved through grid integration, advanced forecasting AI, and innovative hybrid system combinations including battery storage.</p>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">Challenge 03</div>
+        <h3>Energy Storage</h3>
+        <p>Battery capacity expanding rapidly with 250+ GWh deployed globally. Costs dropped dramatically from $1300 to under $130 per kilowatt-hour in a decade.</p>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">Challenge 04</div>
+        <h3>Land Usage Concerns</h3>
+        <p>Dual-use agrivoltaics, floating solar installations, vertical systems, and rooftop deployment effectively minimize environmental footprint concerns.</p>
+      </div>
+      <div class="timeline-item" style="padding-bottom:0">
+        <div class="timeline-year">Challenge 05</div>
+        <h3>Grid Modernization</h3>
+        <p>Legacy systems require strategic modernization enabling two-way power flow capabilities and real-time energy balancing mechanisms for stability.</p>
+      </div>
+    </div>
+
+    <div>
+      <canvas id="jobsChart" height="320" class="reveal" style="transition-delay:0.2s"></canvas>
+    </div>
+  </div>
+</section>
+
+<!-- INNOVATIONS -->
+<div class="section-full" id="innovations">
+  <div class="inner">
+    <div class="section-label" style="color:var(--green)">Technology</div>
+    <h2 class="section-title">Technological Innovations Driving Change</h2>
+    <p class="section-desc" style="color:rgba(255,255,255,0.55)">Six breakthrough technologies transforming how the world generates, stores, and distributes clean energy.</p>
+
+    <div class="innovations-grid">
+      <div class="innov-card reveal">
+        <span class="innov-num">01</span>
+        <h3>Smart Grid Technology</h3>
+        <p>AI-powered demand forecasting and IoT sensors automatically balance loads, reducing peak demand by 15–20% efficiently.</p>
+      </div>
+      <div class="innov-card reveal" style="transition-delay:0.1s">
+        <span class="innov-num">02</span>
+        <h3>Advanced Energy Storage</h3>
+        <p>Lithium-ion batteries dominate with 80% capacity additions, while solid-state and long-duration alternatives emerge as promising future solutions.</p>
+      </div>
+      <div class="innov-card reveal" style="transition-delay:0.2s">
+        <span class="innov-num">03</span>
+        <h3>Green Hydrogen</h3>
+        <p>Electrolysis-based hydrogen production offers emerging energy carrier solutions for hard-to-decarbonize sectors like steel, cement, and aviation.</p>
+      </div>
+      <div class="innov-card reveal" style="transition-delay:0.3s">
+        <span class="innov-num">04</span>
+        <h3>Floating Solar Farms</h3>
+        <p>Over 4 GW deployed globally. Water cooling effect boosts efficiency 40% higher than traditional ground-based solar systems.</p>
+      </div>
+      <div class="innov-card reveal" style="transition-delay:0.4s">
+        <span class="innov-num">05</span>
+        <h3>Microgrids & Distributed Systems</h3>
+        <p>Community-scale renewable networks provide resilience and reliable energy access to remote areas, democratizing sustainable power generation worldwide.</p>
+      </div>
+      <div class="innov-card reveal" style="transition-delay:0.5s">
+        <span class="innov-num">06</span>
+        <h3>AI & Machine Learning</h3>
+        <p>Predictive maintenance and output optimization algorithms achieve over 95% system reliability, transforming grid stability management fundamentally.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FUTURE VISION -->
+<section id="future">
+  <div class="section-label">Looking Ahead</div>
+  <h2 class="section-title">Future of Renewable Energy</h2>
+  <p class="section-desc">From 2024 to 2050 and beyond — the trajectory toward a fully renewable global civilization.</p>
+
+  <div class="future-grid">
+    <div class="future-card reveal">
+      <div class="future-period">2024–2030</div>
+      <p>Renewable energy reaches 42–45% global electricity share. Battery costs drop to $80–100/kWh, accelerating EV adoption to 50% of new vehicle sales globally.</p>
+    </div>
+    <div class="future-card reveal" style="transition-delay:0.1s">
+      <div class="future-period">2030–2040</div>
+      <p>Renewables dominate as primary global energy source at 65%+ electricity. AI optimizes grid operations; nuclear fusion approaches commercial viability worldwide.</p>
+    </div>
+    <div class="future-card reveal" style="transition-delay:0.2s">
+      <div class="future-period">2040–2050</div>
+      <p>Net-zero economy achieved in 150+ countries. Developed nations reach 100% renewable electricity; emerging markets achieve 80%+ renewable energy integration.</p>
+    </div>
+    <div class="future-card reveal" style="transition-delay:0.3s">
+      <div class="future-period">Investment Outlook</div>
+      <p>IEA forecasts 170% renewable capacity increase by 2050. IRENA projects $2.8 trillion annual investments driving circular economy transformation globally.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONCLUSION -->
+<div style="background:linear-gradient(180deg,#f0f9f4 0%,#e8f5ef 100%);padding:5rem 2rem" id="conclusion">
+  <div style="max-width:1180px;margin:0 auto">
+    <div class="conclusion-wrap reveal">
+      <div class="section-label" style="color:var(--green)">Final Thoughts</div>
+      <div class="conclusion-title">Conclusion & Call to Action</div>
+      <p style="color:rgba(255,255,255,0.65);max-width:600px;line-height:1.7;margin-bottom:0.5rem">Renewable energy represents humanity's imperative response to climate change, resource scarcity, and health crises demanding immediate transformation at scale.</p>
+
+      <div class="conclusion-pillars">
+        <div class="pillar">
+          <h4>⚡ Technology Acceleration</h4>
+          <p>Scale solar, wind, storage innovations while advancing hydrogen and fusion solutions for comprehensive energy transition across all economic sectors.</p>
+        </div>
+        <div class="pillar">
+          <h4>🏛️ Policy & Investment</h4>
+          <p>Governments must implement carbon pricing, eliminate $7 trillion fossil fuel subsidies, and redirect capital to green infrastructure and R&D programs.</p>
+        </div>
+        <div class="pillar">
+          <h4>👥 Societal Engagement</h4>
+          <p>Public acceptance, behavioral change, and youth leadership drive political will and market transformation essential for the clean energy revolution's success.</p>
+        </div>
+      </div>
+
+      <div class="closing-quote">
+        "The future is renewable, and the <span>responsibility lies with us.</span>"
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">
+  
+  <img src="https://vectorseek.com/wp-content/uploads/2023/08/lpu-sae-india-collegiate-club-Logo-Vector.svg-.png" alt="LPU Logo">
+
+</div>
+
+</div>
+          <div class="footer-logo-text">Lovely Professional University</div>
+          <div class="footer-logo-sub">Punjab (India)</div>
+        </div>
+      </div>
+      <p class="footer-tagline">Advancing knowledge, fostering innovation, and building a sustainable future through education and research excellence.</p>
+    </div>
+
+    <div class="footer-project">
+      <div class="footer-project-title">CHE 110 Project · 2026</div>
+      <h3>Renewable Energy: The Path to a Sustainable Future</h3>
+      <p>Course: Chemistry (CHE 110) · Lovely Professional University</p>
+      <div class="footer-team">
+        <div class="team-member">Rashi Ramghadia</div>
+        <div class="team-member">Subham Mohanty</div>
+        <div class="team-member">Saumay Yadav</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>© 2026 Lovely Professional University · CHE 110 Project</p>
+    <p class="green">🌱 The future is renewable.</p>
+  </div>
+</footer>
+
+<script>
+  // ── HAMBURGER ──
+  function toggleMenu() {
+    document.getElementById('navLinks').classList.toggle('open');
+  }
+
+  // ── PROGRESS BAR ──
+  window.addEventListener('scroll', () => {
+    const scrollTop = document.documentElement.scrollTop;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = (scrollTop / docHeight) * 100;
+    document.getElementById('progressBar').style.width = progress + '%';
+  });
+
+  // ── SCROLL REVEAL ──
+  const reveals = document.querySelectorAll('.reveal, .reveal-left');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+  reveals.forEach(el => observer.observe(el));
+
+  // ── COUNTERS ──
+  function animateCounter(el) {
+    const target = parseFloat(el.dataset.target);
+    const suffix = el.dataset.suffix || '';
+    const prefix = el.dataset.prefix || '';
+    const isFloat = target % 1 !== 0;
+    const duration = 1800;
+    const step = 16;
+    const increment = target / (duration / step);
+    let current = 0;
+    const timer = setInterval(() => {
+      current += increment;
+      if (current >= target) { current = target; clearInterval(timer); }
+      el.textContent = prefix + (isFloat ? current.toFixed(1) : Math.floor(current)) + suffix;
+    }, step);
+  }
+
+  const counterObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        animateCounter(e.target);
+        counterObserver.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.5 });
+
+  document.querySelectorAll('[data-target]').forEach(el => counterObserver.observe(el));
+
+  // ── ENERGY CARD TOGGLE ──
+  function toggleCard(card) {
+    const isActive = card.classList.contains('active');
+    document.querySelectorAll('.energy-card').forEach(c => c.classList.remove('active'));
+    if (!isActive) card.classList.add('active');
+    const btn = card.querySelector('.expand-btn');
+    if (btn) btn.textContent = card.classList.contains('active') ? 'Close ▴' : 'Learn more ▾';
+  }
+
+  // ── TOGGLE TABS ──
+  function switchTab(tab, id) {
+    document.querySelectorAll('.toggle-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.toggle-content').forEach(c => c.classList.remove('active'));
+    tab.classList.add('active');
+    document.getElementById(id).classList.add('active');
+  }
+
+  // ── CHARTS ──
+  const chartDefaults = {
+    color: 'rgba(255,255,255,0.75)',
+    borderColor: 'rgba(255,255,255,0.1)',
+  };
+
+  // Capacity over years
+  new Chart(document.getElementById('capacityChart'), {
+    type: 'line',
+    data: {
+      labels: ['2010','2012','2014','2016','2018','2020','2022','2024'],
+      datasets: [{
+        label: 'Global RE Capacity (GW)',
+        data: [1260, 1490, 1710, 2000, 2370, 2840, 3380, 3870],
+        borderColor: '#2ecc71',
+        backgroundColor: 'rgba(46,204,113,0.12)',
+        fill: true,
+        tension: 0.4,
+        pointBackgroundColor: '#2ecc71',
+        pointRadius: 4,
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: true,
+      plugins: { legend: { labels: { color: 'rgba(255,255,255,0.65)', font: { size: 11 } } } },
+      scales: {
+        x: { ticks: { color: 'rgba(255,255,255,0.5)', font:{size:10} }, grid: { color: 'rgba(255,255,255,0.05)' } },
+        y: { ticks: { color: 'rgba(255,255,255,0.5)', font:{size:10} }, grid: { color: 'rgba(255,255,255,0.05)' } }
+      }
+    }
+  });
+
+  // Countries
+  new Chart(document.getElementById('countriesChart'), {
+    type: 'bar',
+    data: {
+      labels: ['China','USA','India','Germany','Spain'],
+      datasets: [{
+        label: 'Capacity (GW)',
+        data: [1180, 440, 170, 150, 65],
+        backgroundColor: ['#2ecc71','#3498db','#f39c12','#9b59b6','#e74c3c'],
+        borderRadius: 6,
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: true,
+      plugins: { legend: { display: false } },
+      scales: {
+        x: { ticks: { color: 'rgba(255,255,255,0.5)', font:{size:10} }, grid: { display: false } },
+        y: { ticks: { color: 'rgba(255,255,255,0.5)', font:{size:10} }, grid: { color: 'rgba(255,255,255,0.05)' } }
+      }
+    }
+  });
+
+  // Cost reduction
+  new Chart(document.getElementById('costChart'), {
+    type: 'bar',
+    data: {
+      labels: ['Solar PV', 'Wind Energy', 'Battery Storage'],
+      datasets: [{
+        label: 'Cost Reduction (%)',
+        data: [90, 70, 89],
+        backgroundColor: ['#f39c12','#3498db','#2ecc71'],
+        borderRadius: 6,
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: true,
+      plugins: { legend: { display: false } },
+      scales: {
+        x: { ticks: { color: 'rgba(255,255,255,0.5)', font:{size:10} }, grid: { display: false } },
+        y: {
+          ticks: { color: 'rgba(255,255,255,0.5)', font:{size:10}, callback: v => v + '%' },
+          grid: { color: 'rgba(255,255,255,0.05)' },
+          max: 100
+        }
+      }
+    }
+  });
+
+  // Jobs chart
+  new Chart(document.getElementById('jobsChart'), {
+    type: 'bar',
+    data: {
+      labels: ['Solar', 'Hydropower', 'Biomass', 'Biofuels', 'Wind'],
+      datasets: [
+        { label: '2024', data: [4.4, 2.5, 2.3, 2.1, 1.3], backgroundColor: '#2ecc71', borderRadius: 5 },
+        { label: '2020', data: [3.6, 2.0, 1.9, 1.7, 1.1], backgroundColor: 'rgba(52,152,219,0.6)', borderRadius: 5 }
+      ]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: true,
+      indexAxis: 'y',
+      plugins: {
+        legend: { labels: { color: 'rgba(0,0,0,0.65)', font: { size: 11 } } },
+        title: { display: true, text: 'Jobs by Energy Sector (Millions)', color: 'rgba(0,0,0,0.75)', font: { size: 13, weight: '700', family: 'Sora' } }
+      },
+      scales: {
+        x: { ticks: { color: '#555', font:{size:10} }, grid: { color: 'rgba(0,0,0,0.06)' } },
+        y: { ticks: { color: '#555', font:{size:10} }, grid: { display: false } }
+      }
+    }
+  });
+</script>
+</body>
+</html>
